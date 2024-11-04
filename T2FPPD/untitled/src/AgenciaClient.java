@@ -1,3 +1,4 @@
+import java.rmi.ConnectException;
 import java.rmi.Naming;
 import java.util.Scanner;
 
@@ -87,7 +88,10 @@ public class AgenciaClient {
 
             System.out.println("Obrigado por usar o sistema bancário!");
             scanner.close();
-        } catch (Exception e) {
+        }catch (ConnectException connectException){
+            System.err.println("Erro ao conectar ao servidor: " + connectException.getMessage());
+            connectException.printStackTrace();
+        }catch (Exception e) {
             System.err.println("Erro no cliente de agência: " + e.getMessage());
             e.printStackTrace();
         }

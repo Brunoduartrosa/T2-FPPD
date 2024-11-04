@@ -1,3 +1,4 @@
+import java.rmi.ConnectException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.Scanner;
@@ -99,7 +100,10 @@ public class CaixaClient {
 
             System.out.println("Obrigado por usar o Caixa Automático!");
             scanner.close();
-        } catch (Exception e) {
+        }catch (ConnectException connectException){
+            System.err.println("Erro ao conectar ao servidor: " + connectException.getMessage());
+            connectException.printStackTrace();
+        }catch (Exception e) {
             System.err.println("Erro no cliente de caixa automático: ");
             e.printStackTrace();
         }
