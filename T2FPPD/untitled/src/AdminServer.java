@@ -51,7 +51,7 @@ public class AdminServer extends UnicastRemoteObject implements ContaInterface {
         try {
             java.rmi.registry.LocateRegistry.createRegistry(1099);
             AdminServer server = new AdminServer();
-            Naming.rebind("//10.132.249.198/Banco", server);
+            Naming.rebind("Banco", server);
             System.out.println("Servidor de Administração pronto.");
         } catch (Exception e) {
             System.err.println("Erro: " + e.getMessage());

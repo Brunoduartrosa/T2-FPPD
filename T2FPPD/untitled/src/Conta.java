@@ -18,7 +18,7 @@ public class Conta implements Serializable {
     }
 
     public synchronized boolean depositar(double valor) {
-        if (valor>0){
+        if (valor > 0) {
             saldo += valor;
             return true;
         }
@@ -26,7 +26,7 @@ public class Conta implements Serializable {
     }
 
     public synchronized boolean sacar(double valor) {
-        if (valor<0 && saldo >= valor){
+        if (valor > 0 && saldo >= valor) {
             saldo -= valor;
             return true;
         }
