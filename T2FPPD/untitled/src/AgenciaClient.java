@@ -8,15 +8,12 @@ public class AgenciaClient {
             System.exit(1);
         }
 
-        try{
+        try {
             ContaInterface banco = (ContaInterface) Naming.lookup("//" + args[0] + "/Banco");
             Scanner scanner = new Scanner(System.in);
             String nomeCliente = args[1];
 
-
             System.out.println("Bem-vindo ao sistema bancário!");
-            System.out.print("Digite o nome do cliente: ");
-            nomeCliente = scanner.nextLine();
 
             boolean exit = false;
             while (!exit) {
@@ -30,7 +27,7 @@ public class AgenciaClient {
                 System.out.print("Opção: ");
 
                 int opcao = scanner.nextInt();
-                scanner.nextLine();  // Limpar o buffer de entrada
+                scanner.nextLine(); // Limpar o buffer de entrada
 
                 switch (opcao) {
                     case 1:
@@ -73,7 +70,7 @@ public class AgenciaClient {
                     case 5:
                         if (banco.fecharConta(nomeCliente)) {
                             System.out.println("Conta fechada com sucesso para: " + nomeCliente);
-                            exit = true;  // Sair após fechar a conta
+                            exit = true; // Sair após fechar a conta
                         } else {
                             System.out.println("Conta não encontrada.");
                         }
@@ -90,7 +87,7 @@ public class AgenciaClient {
 
             System.out.println("Obrigado por usar o sistema bancário!");
             scanner.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.err.println("Erro no cliente de agência: " + e.getMessage());
             e.printStackTrace();
         }

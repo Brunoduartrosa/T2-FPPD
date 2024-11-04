@@ -9,15 +9,12 @@ public class CaixaClient {
             System.exit(1);
         }
 
-        try{
+        try {
             ContaInterface banco = (ContaInterface) Naming.lookup("//" + args[0] + "/Banco");
             Scanner scanner = new Scanner(System.in);
             String nomeCliente = args[1];
 
-
             System.out.println("Bem-vindo ao Caixa Automático!");
-            System.out.print("Digite o nome do cliente: ");
-            nomeCliente = scanner.nextLine();
 
             boolean exit = false;
             while (!exit) {
@@ -31,7 +28,7 @@ public class CaixaClient {
                 System.out.print("Opção: ");
 
                 int opcao = scanner.nextInt();
-                scanner.nextLine();  // Limpar o buffer de entrada
+                scanner.nextLine(); // Limpar o buffer de entrada
 
                 switch (opcao) {
                     case 1:
@@ -102,7 +99,7 @@ public class CaixaClient {
 
             System.out.println("Obrigado por usar o Caixa Automático!");
             scanner.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.err.println("Erro no cliente de caixa automático: ");
             e.printStackTrace();
         }

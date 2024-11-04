@@ -9,16 +9,10 @@ public class AdminServer extends UnicastRemoteObject implements ContaInterface {
 
     public AdminServer() throws RemoteException {
         contas = new HashMap<String, Conta>();
-
-        contas.put("Cliente1", new Conta("Cliente1"));
-        contas.put("Cliente2", new Conta("Cliente2"));
-        contas.put("Cliente3", new Conta("Cliente3"));
-        contas.put("Cliente4", new Conta("Cliente4"));
-        contas.put("Cliente5", new Conta("Cliente5"));
     }
 
     public synchronized boolean abrirConta(String nome) throws RemoteException {
-        if (contas.containsKey(nome)) {
+        if (!contas.containsKey(nome)) {
             contas.put(nome, new Conta(nome));
             return true;
         }
@@ -54,7 +48,7 @@ public class AdminServer extends UnicastRemoteObject implements ContaInterface {
     }
 
     public static void main(String[] args) {
-        try{
+        try {
             java.rmi.registry.LocateRegistry.createRegistry(1099);
             AdminServer server = new AdminServer();
             Naming.rebind("Banco", server);
